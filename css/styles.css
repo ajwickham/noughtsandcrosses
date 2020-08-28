@@ -1,0 +1,72 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(100, 1vw);
+  grid-template-rows: repeat(100, 1vw);
+  text-align: center;
+  font-size: 6vw;
+}
+.vlineone {
+  grid-column: 45/46;
+  grid-row: 1/30;
+  background-color: black;
+}
+.vlinetwo {
+  grid-column: 54/55;
+  grid-row: 1/30;
+  background-color: black;
+}
+.hlineone {
+  grid-column: 35/65;
+  grid-row: 10/11;
+  background-color: black;
+}
+.hlinetwo {
+  grid-column: 35/65;
+  grid-row: 20/21;
+  background-color: black;
+}
+#one {
+  grid-column: 37/44;
+  grid-row: 0/4;
+  height: 10vw;
+}
+#two { 
+  grid-column: 47/53;
+  grid-row: 0/4;
+  height: 10vw;
+}
+#three {
+  grid-column: 56/64;
+  grid-row: 0/4;
+  height: 10vw;
+}
+#four {
+  grid-column: 37/44;
+  grid-row: 11/19;
+  height: 10vw;
+}
+#five {
+  grid-column: 47/53;
+  grid-row: 11/19;
+  height: 10vw;
+}
+#six {
+  grid-column: 56/64;
+  grid-row: 11/19;
+  height: 10vw;
+}
+#seven {
+  grid-column: 37/44;
+  grid-row: 21/29;
+  height: 10vw;
+}
+#eight {
+  grid-column: 47/53;
+  grid-row: 21/29;
+  height: 10vw;
+}
+#nine {
+  grid-column: 56/64;
+  grid-row: 21/29;
+  height: 10vw; 
+}
