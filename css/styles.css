@@ -5,6 +5,15 @@
   text-align: center;
   font-size: 6vw;
 }
+#score {
+  grid-column: 2/34;
+  text-align: left;
+  font-size: 2vw;
+  text-decoration-line: none;
+}
+
+
+
 .vlineone {
   grid-column: 45/46;
   grid-row: 1/30;

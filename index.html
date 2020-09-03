@@ -10,24 +10,37 @@
 <body>
   <h1>Noughts and Crosses</h1>
   <br>
+  <!--Product Backlog item
   <div class="row">
-    <h2>Player 2 Selection:</h2>
-  </div>  
+    <div class="col-md-12">
+    <h3>Player 2 Selection:</h3>
+    </div>
+  </div-->  
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-6">
-      <div class="radio">
+      <!--div class="radio">
         <label><input type="radio" name="player2" value="2" checked>Person</label>
       </div>
       <div class="radio"><label><input type="radio" name="player2" value="PC Easy">Computer (Easy Mode)</label>
       </div>
       <div class="radio"><label><input type="radio" name="player2" value="PC Hard">Computer (Harder Mode)</label>
       </div>
+      <br-->
+      <button type="submit" id="reset"><u>Reset Board</u></button>
+      </div>  
     </div>
   </div>
   <hr>
 
+  
+  
   <div class="wrapper">
+    <div id="score"><p><span>Whose go?    </span><span id="go"></span></p>
+    <p><span>Score for player X is:    </span><span id="xscore">0</span></p>
+    <p><span>Score for player O is:    </span><span id="oscore">0</span></p>
+    </div>
+
     <div id="one"><p id="pOne"></p></div>
     <div id="two"><p id="pTwo"></p></div>
     <div id="three"><p id="pThree"></p></div>

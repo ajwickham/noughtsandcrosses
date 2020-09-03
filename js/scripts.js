@@ -2,71 +2,108 @@
 
 function Game() {
   this.boards = [];
+};
+
+function Board() { 
 }
 
 let game1 = new Game;
-let boards1 = [];
-let boards2 = [];
+let board = new Board
+let brd = 0
 
-let t=0
-let turn = "X"
-
-Game.prototype.addBoards = function(board) {
-  board.push([],[],[],[],[],[],[],[],[]);
-  this.boards.push(board);
+Game.prototype.addBoard = function() {
+  debugger
+  this.boards.push([]);
+  this.boards[brd].push([],[],[],[],[],[],[],[],[]);
 }
 
-Game.prototype.addMark = function(b,square,mark,score) {
+
+Game.prototype.addMark = function(square,oscore,xscore) {
   debugger
-  this.boards[(b-1)][square-1].push(mark,score);  //  boards[b-1]  = board number.  
-  game1.checkRowsCol(b);
+  this.boards
+  this.boards[brd][square-1].push(oscore,xscore);  //  boards[b-1]  = board number to array number.  
+  game1.checkRowsCol(brd);                             //  brd is the array number used inside functions = b-1 
   game1.changeTurn();
 }
 
+let turn = 0
+let mark = "O"
 Game.prototype.changeTurn = function() {
-  debugger
-  t=1-t
-  if (t=1) {
-    turn = "X";
+  displayPlayer();
+  turn=1-turn
+  if (turn===1) {
+    mark = "X";
   }
-  if (t=0) {
-    turn = "O";
+  if (turn===0) {
+    mark = "O";
   }
 };
  
-Game.prototype.checkRowsCol = function (b) {
-    let total = 0
-    let addToTotal
+Game.prototype.checkRowsCol = function (brd) {
+    let ototal = 0
+    let oaddToTotal  
+    let xtotal = 0
+    let xaddToTotal
     let k
+    
     for (let j=0; j<3; j++) {			//columns
-      total = 0
+      debugger
+      ototal = 0
+      xtotal = 0
       for (let i=0; i+j<9; i=i+3) {
         k=i+j;
-        addToTotal = this.scoreSquare(b,k)
-        total += addToTotal
+        xaddToTotal = this.scoreSquare(brd,k,1)
+        xtotal += xaddToTotal
+        oaddToTotal = this.scoreSquare(brd,k,0)
+        ototal += oaddToTotal
       }
-      if (total === 26) {
+      if (xtotal === 26) {
+        xBoardTotal++
         alert("Winner")
       }
-    }
-    total=0
+      if (ototal ===26) {
+        oBoardTotal++
+        alert("Winner")
+      }
+    } 
+    ototal=0   
+    xtotal=0
     let n=0
     for (let i=0; i<9; i++) {		//rows
-      total+=(this.boards[0][i][1]);
+      this.boards
+      ototal+=(this.boards[brd][i][0]);
+      xtotal+=(this.boards[brd][i][1]);
       n++
       if (n===3) {
-        if (total === 3) {
+        if (ototal === 3) {
+          oBoardTotal++
           alert("Winner");
         }
-        total = 0;
+        if (xtotal ===3) {
+          xBoardTotal++
+          alert("Winner");
+        }
+        ototal=0   
+        xtotal=0
       }
       if (n===6) {
-        if (total === 15) {
+        if (ototal === 15) {
+          oBoardTotal++
           alert("Winner");
         }
-        total = 0;
+        if (xtotal ===15) {
+          xBoardTotal++
+          alert("Winner");
+        }
+        ototal=0   
+        xtotal=0
       }
-      if (total === 60) {
+      if (ototal === 60) {
+        oBoardTotal++
+        alert("Winner");
+      }
+      if (xtotal === 60) {
+        xBoardTotal++
         alert("Winner");
       }
     }
@@ -76,29 +113,43 @@ Game.prototype.checkRowsCol = function (b) {
 
   Game.prototype.checkDiagonal = function () {
   debugger
-  total = 0
-  for (let i=2; i<7; i=i+2) {		//diagonal
-    total+=(boards1[(i)][1]);
+  ototal=0   
+  xtotal=0
+  for (let i=2; i<7; i=i+2) {		          //diagonal top right to bottom left
+    ototal+=(this.boards[brd][i][0]);
+    xtotal+=(this.boards[brd][i][1]);
     }
-  if (total === 26) {
-      alert("Winner")
+    if (ototal === 26) {
+      oBoardTotal++
+      alert("Winner");
     }
-  total=0
-  for (let i=0; i<9; i=i+4) {		//diagonal
-    total+=(boards1[(i)][1]);
+    if (xtotal ===26) {
+      xBoardTotal++
+      alert("Winner");
+    }    
+  
+  ototal=0   
+  xtotal=0
+  for (let i=0; i<9; i=i+4) {	        	//diagonal  top left to bottom right
+    ototal+=(this.boards[brd][i][0]);
+    xtotal+=(this.boards[brd][i][1]);
     }
-  if (total === 26) {
-      alert("Winner")
+    if (ototal === 26) {
+      oBoardTotal++
+      alert("Winner");
     }
+    if (xtotal ===26) {
+      xBoardTotal++
+      alert("Winner");
+    }  
   };
     
-  Game.prototype.scoreSquare = function (b,k) {
-    debugger
-    let x
+  Game.prototype.scoreSquare = function (brd,k,z) {  //subfunction that finds the number                         
+    let x                                            //of x or o in a square
     let y 
-    x = isNaN(this.boards[(b-1)][(k)][1]);
+    x = isNaN(this.boards[brd][k][z]);
     if (x == false) {
-      y = this.boards[(b-1)][(k)][1]
+      y = this.boards[brd][k][z]
     }
     else {
       y = 0
@@ -107,70 +158,91 @@ Game.prototype.checkRowsCol = function (b) {
   };  
 
   
-
-game1.addBoards(boards1);
-game1.addBoards(boards2);
-
-//game1.addMark(1,5,"X");
-//game1.checkRowOf3(boards1);
+game1.addBoard();  //adding first board
 
 
+//Front end logic
 
+let xBoardTotal = 0
+let oBoardTotal = 0
 
-//Front end functionality
+resetboard = function () {
+  document.getElementById("pOne").innerHTML = "";
+  document.getElementById("pTwo").innerHTML = "";
+  document.getElementById("pThree").innerHTML = "";
+  document.getElementById("pFour").innerHTML = "";
+  document.getElementById("pFive").innerHTML = "";
+  document.getElementById("pSix").innerHTML = "";
+  document.getElementById("pSeven").innerHTML = "";
+  document.getElementById("pEight").innerHTML = "";
+  document.getElementById("pNine").innerHTML = "";
+  document.getElementById("xscore").innerHTML = "";
+  document.getElementById("oscore").innerHTML = "";
+  document.getElementById("xscore").innerHTML = xBoardTotal;
+  document.getElementById("oscore").innerHTML = oBoardTotal;
+  ototal=0   
+  xtotal=0
+  brd = brd+1
+  game1.addBoard();
+}; 
 
-
+displayPlayer = function () {
+  document.getElementById("go").innerHTML = mark
+}
 
 $(document).ready(function() {
- 
-  
+
+  $("#reset").click(function () {   
+    resetboard();
+  }); 
+
   $("#one").click(function () {   
-    game1.addMark(1,1,turn,1);
-    document.getElementById("pOne").innerHTML = turn;
+    game1.addMark(1,1*turn,1*(1-turn));
+    document.getElementById("pOne").innerHTML = mark;
     game1.checkDiagonal();
   });
 
   $("#two").click(function () {   
-    game1.addMark(1,2,turn,1);
-    document.getElementById("pTwo").innerHTML = turn;
+    game1.addMark(2,1*turn,1*(1-turn));
+    document.getElementById("pTwo").innerHTML = mark;
   });
 
   $("#three").click(function () {   
-    game1.addMark(1,3,turn,1);
-    document.getElementById("pThree").innerHTML = turn;
+    game1.addMark(3,1*turn,1*(1-turn));
+    document.getElementById("pThree").innerHTML = mark;
     game1.checkDiagonal();
   });
 
   $("#four").click(function () {   
-    game1.addMark(1,4,turn,5);
-    document.getElementById("pFour").innerHTML = turn;
+    game1.addMark(4,5*turn,5*(1-turn));
+    document.getElementById("pFour").innerHTML = mark;
   });
 
   $("#five").click(function () {   
-    game1.addMark(1,5,turn,5);
-    document.getElementById("pFive").innerHTML = turn;
+    game1.addMark(5,5*turn,5*(1-turn));
+    document.getElementById("pFive").innerHTML = mark;
     game1.checkDiagonal();
   });
 
   $("#six").click(function () {   
-    game1.addMark(1,6,turn,5);
-    document.getElementById("pSix").innerHTML = turn;
+    game1.addMark(6,5*turn,5*(1-turn));
+    document.getElementById("pSix").innerHTML = mark;
   });
 
   $("#seven").click(function () {   
-    game1.addMark(1,7,turn,20);
-    document.getElementById("pSeven").innerHTML = turn;
+    game1.addMark(7,20*turn,20*(1-turn));
+    document.getElementById("pSeven").innerHTML = mark;
     game1.checkDiagonal();
   });
 
   $("#eight").click(function () {   
-    game1.addMark(1,8,turn,20);
-    document.getElementById("pEight").innerHTML = turn;
+    game1.addMark(8,20*turn,20*(1-turn));
+    document.getElementById("pEight").innerHTML = mark;
   });
 
   $("#nine").click(function () {   
-    game1.addMark(1,9,turn,20);
-    document.getElementById("pNine").innerHTML = turn;
+    game1.addMark(9,20*turn,20*(1-turn));
+    document.getElementById("pNine").innerHTML = mark;
     game1.checkDiagonal();
   });
 });
