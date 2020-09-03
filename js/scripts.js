@@ -12,14 +12,12 @@ let board = new Board
 let brd = 0
 
 Game.prototype.addBoard = function() {
-  debugger
   this.boards.push([]);
   this.boards[brd].push([],[],[],[],[],[],[],[],[]);
 }
 
 
 Game.prototype.addMark = function(square,oscore,xscore) {
-  debugger
   this.boards
   this.boards[brd][square-1].push(oscore,xscore);  //  boards[b-1]  = board number to array number.  
   game1.checkRowsCol(brd);                             //  brd is the array number used inside functions = b-1 
@@ -47,7 +45,6 @@ Game.prototype.checkRowsCol = function (brd) {
     let k
     
     for (let j=0; j<3; j++) {			//columns
-      debugger
       ototal = 0
       xtotal = 0
       for (let i=0; i+j<9; i=i+3) {
@@ -112,7 +109,6 @@ Game.prototype.checkRowsCol = function (brd) {
   
 
   Game.prototype.checkDiagonal = function () {
-  debugger
   ototal=0   
   xtotal=0
   for (let i=2; i<7; i=i+2) {		          //diagonal top right to bottom left
